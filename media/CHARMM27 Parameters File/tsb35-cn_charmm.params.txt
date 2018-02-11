@@ -1,0 +1,669 @@
+*>>>>>>>>> CHARMM22 Proteins and CHARMM27 Lipids <<<<<<<<<<
+*from
+*>>>> CHARMM22 All-Hydrogen Parameter File for Proteins <<<<<<<<<<
+*>>>>>>>>>>>>>>>>>>>>>> August 1999 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*>>>>>>> Direct comments to Alexander D. MacKerell Jr. <<<<<<<<<
+*>>>>>> 410-706-7442 or email: alex,mmiris.ab.umd.edu  <<<<<<<<<
+*and
+*\\\\\\\ CHARMM27 All-Hydrogen Lipid Parameter File ///////
+*\\\\\\\\\\\\\\\\\\ Developmental /////////////////////////
+
+*  --------------------------------------------------------------------------  *
+*         CGenFF: Parameters for the Charmm General Force Field v. 2b8         *
+*                    for Small Molecule Drug Design                            *
+*  --------------------------------------------------------------------------  *
+!  --------------------------------------------------------------------------  !
+!  Reference: K. Vanommeslaeghe, E. Hatcher, C. Acharya, S. Kundu, S. Zhong,   !
+!      J. Shim, E. Darian, O. Guvench, P. Lopes, I. Vorobyov and               !
+!      A. D. Mackerell Jr., J. Comput. Chem. 2010, 31, 671-690.                !
+!  --------------------------------------------------------------------------  !
+!  Notes: - CGenFF is an ongoing project that is updated regularly. Please     !
+!             check http://dogmans.umaryland.edu/~kenno/cgenff/download.html   !
+!             and/or http://mackerell.umaryland.edu/ for updates!              !
+!         - As more functional groups will be introduced, small changes in     !
+!             existing parameters and/or charges may occur.                    !
+!         - Comments in this file may be misleading.                           !
+!  --------------------------------------------------------------------------  !
+!  Contributors: abar  = Arghya Barman
+!                adm   = Alexander D. MacKerell Jr.                            !
+!                alr   = Ashley L. Ringer                                      !
+!                cacha = Chayan Acharya                                        !
+!                ed    = Eva Darian                                            !
+!                ejd   = Elizabeth J. Denning                                  !
+!                erh   = Elizabeth R. Hatcher Frush                            !
+!                jal   = Justin A. Lemkul                                      !
+!                jhs   = JiHyun Shim                                           !
+!                kevo  = Kenno VanOmmeslaeghe                                  !
+!                kundu = Sibsankar Kundu                                       !
+!                lsk   = Lakkaraju Sirish Kaushik                              !
+!                mcs   = Meagan C. Small                                       !
+!                mnoon = Muhammad Noon                                         !
+!                oashi = Taiji Oashi                                           !
+!                og    = Olgun Guvench                                         !
+!                peml  = Pedro Lopes                                           !
+!                pram  = E. Prabhu Raman                                       !
+!                sc    = Sherry (Hua) Chen                                     !
+!                sna   = Shanthi Nagarajan                                     !
+!                sz    = Shijun Zhong                                          !
+!                viv   = Igor Vorobyov                                         !
+!                xhe   = Xibing He                                             !
+!                xxwy  = Wenbo Yu                                              !
+!                yapol = Iakov Polyak                                          !
+!                yin   = Daxu Yin                                              !
+!  --------------------------------------------------------------------------  !
+!  All comments to ADM jr. via the CHARMM web site: www.charmm.org             !
+!                 parameter set discussion forum                               !
+!  --------------------------------------------------------------------------  !
+!  ORDER OF PREFERENCE FOR SORTING PARAMETERS:                                 !
+!         + C < N < O < P < S < HALOGENS (LOW TO HIGH Z) < MISC. (BY Z) < H    !
+!         + ATOMS TYPES WITHIN THE SAME ELEMENT ARE SORTED ALPHABETICALLY      !
+!  --------------------------------------------------------------------------  !
+!  RULES FOR SORTING THE COLUMS ON EACH LINE:                                  !
+!         + IN BONDS, THE LOWEST PRIORITY ATOM ALWAYS COMES FIRST              !
+!         + FOR ANGLES, IF COLUMN 3 HAS A LOWER PRIORITY THAN COLUMN 1,        !
+!           COLUMNS 1 & 3 ARE SWAPPED                                          !
+!         + FOR DIHEDRALS, IF COLUMN 3 HAS LOWER PRIORITY THAN COLUMN 2, THE   !
+!           ORDER FOR THE ENTIRE DIHEDRAL IS REVERSED                          !
+!         + FOR DIHEDRALS, IF COLUMNS 2 & 3 HAVE THE SAME PRIORITY, COLUMS     !
+!           1 & 4 ARE CONSIDERED INSTEAD. IF 4 HAS LOWER PRIORITY THAN 1, THE  !
+!           ORDER FOR THE ENTIRE DIHEDRAL IS REVERSED                          !
+!         + FOR IMPROPERS, NO SORTING IS PERFORMED *AFTER* PARAMETRIZATION,    !
+!           BUT THE FOLLOWING RULES APPLY *DURING* PARAMETRIZATION:            !
+!               - COLUMN 1 IS ALWAYS THE CENTRAL ATOM                          !
+!               - IF 2 OF THE SUBSTITUENTS HAVE IDENTICAL TYPES, THESE SHOULD  !
+!                 BE IN COLUMNS 2 & 3 (BUT THEY CANNOT BE MOVED AROUND         !
+!                 WITHOUT RE-OPTIMIZING THE PARAMETER)                         !
+!               - IF THE SUBSTITUENTS ARE ALL DIFFERENT, COLUMNS 2, 3 & 4      !
+!                 SHOULD BE SORTED BY INCREASING PRIORITY. COLUMNS 2 AND 3     !
+!                 CAN BE SWAPPED WITHOUT CHANGING THE PARAMETER BUT OTHER      !
+!                 PERMUTATIONS MANDATE RE-OPTIMIZATION                         !
+!  --------------------------------------------------------------------------  !
+!  PRIORITY OF COLUMNS FOR THE PURPOSE OF SORTING THE LINES IN EACH SECTION:   !
+!           BONDS     -- 1,2                                                   !
+!           ANGLES    -- 2,1,3                                                 !
+!           DIHEDRALS -- 2,3,1,4                                               !
+!           IMPROPERS -- 1,4,2,3                                               !
+!  WHERE 1,2,3,4 INDICATE COLUMN NO, EG. ANGLES ARE FIRST SORTED BY COLUMN 2,  !
+!  THEN (IF COLUMN 2 IS THE SAME) BY COLUMN 1, THEN BY COLUMN 3.               !
+!  --------------------------------------------------------------------------  !
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+BONDS
+!
+!V(bond) = Kb(b - b0)**2
+!
+!Kb: kcal/mole/A**2
+!b0: A
+!
+!atom types  Kb		    b0
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  CENTRAL RING (revision 6/2014)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61A   CG2R61B    305.000     1.397 
+CG2R61A   CG2R61C    305.000     1.397
+CG2R61A   CG2R61D    305.000     1.397
+		! Kb = PROT benzene, JES 8/25/89
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+		! b0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+		! Results used are averages of both molecules, differ < 1%
+HGR61   CG2R61B    340.000     1.081 
+HGR61   CG2R61C    340.000     1.081 
+HGR61   CG2R61D    340.000     1.081 
+		! Kb = PROT phe,tyr JES 8/25/89
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+		! b0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+		! Results used are averages of both molecules, differ < 1%
+CG2DC1A  CG2R61A     365.000     1.4635
+CG2DC1B  CG2R61A     365.000     1.4635
+CG2DC1C  CG2R61A     365.000     1.4635 
+		! Kb = compromise between HDZ1B and STYR by kevo
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+CG2DC1A  CG2DC1D   440.000     1.3500 
+CG2DC1B  CG2DC1D   440.000     1.3500 
+CG2DC1C  CG2DC1D   440.000     1.3500  
+		! Kb = RETINOL BTE2, 2-butene
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+HGA4  CG2DC1A   360.500     1.0853   
+HGA4  CG2DC1B   360.500     1.0853   
+HGA4  CG2DC1C   360.500     1.0853   
+		! Kb = LIPID propene, yin/adm jr., 12/95
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  PERIPHERAL RING (revision 6/2014)  *** Note Repeated entries ***
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!CG2R61A   CG2R61B    305.000     1.397 
+!CG2R61A   CG2R61C    305.000     1.397 
+!CG2R61A   CG2R61D    305.000     1.397 
+CG2R61B   CG2R61B    305.000     1.397 
+CG2R61C   CG2R61C    305.000     1.397
+CG2R61B   CG2R61D    305.000     1.397  
+CG2R61C   CG2R61D    305.000     1.397 
+           ! Kb = PROT benzene, JES 8/25/89
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+		! b0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+		! Results used are averages of both molecules, differ < 1%
+!HGR61   CG2R61B    340.000     1.081 
+!HGR61   CG2R61C    340.000     1.081 
+!HGR61   CG2R61D    340.000     1.081 
+           ! Kb = PROT phe,tyr JES 8/25/89
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+		! b0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+		! Results used are averages of both molecules, differ < 1%
+HGA4  CG2DC1D   360.500     1.0853   
+		! Kb = LIPID propene, yin/adm jr., 12/95
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+CG2DC1D  CG2R61A     365.000     1.463545 
+		! Kb = compromise between HDZ1B and STYR by kevo
+		! b0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+OG301   CG2R61B    230.00     1.3728 
+OG301   CG2R61C    230.00     1.3728
+		! Kb = COMPDS peml
+		! b0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  Oxygen + Alkane branches  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+OG301   CG321    360.000     1.4252 
+		! Kb = diethylether, alex (not our alex)
+		! b0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+CG321  CG321   222.500     1.5243 
+           ! Kb = alkane update, adm jr., 3/2/92
+		! b0 = MP2/631gdp Hexane, A. St. John, 5/2014 
+		! (1,3-diethoxy-5-methylbenzene differs by ~ 1%, bond nearest to oxygen)
+CG331  CG321   222.500     1.5236 
+           ! Kb =  alkane update, adm jr., 3/2/92
+		! b0 = MP2/631gdp Hexane, A. St. John, 5/2014 
+HGA2   CG321   309.000     1.093 
+           ! Kb = alkane update, adm jr., 3/2/92
+		! b0 = MP2/631gdp Hexane, A. St. John, 5/2014 
+HGA3   CG331   322.000     1.089 
+           ! Kb = alkane update, adm jr., 3/2/92
+		! b0 = MP2/631gdp Hexane, A. St. John, 5/2014 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!	Graphite
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61   CG2R61    305.000     1.397
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ANGLES
+!
+!V(angle) = Ktheta(Theta - Theta0)**2
+!
+!V(Urey-Bradley) = Kub(S - S0)**2
+!
+!Ktheta: kcal/mole/rad**2
+!Theta0: degrees
+!Kub: kcal/mole/A**2 (Urey-Bradley)
+!S0: A
+!
+!atom types     Ktheta    Theta0   Kub     S0
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  CENTRAL RING (revision 6/2014)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61A   CG2R61B   CG2R61A    40.000    120.00   35.00   2.41967 
+CG2R61A   CG2R61C   CG2R61A    40.000    120.00   35.00   2.41967 
+CG2R61A   CG2R61D   CG2R61A    40.000    120.00   35.00   2.41967 
+CG2R61B   CG2R61A   CG2R61C    40.000    120.00   35.00   2.41967 
+CG2R61C   CG2R61A   CG2R61D    40.000    120.00   35.00   2.41967 
+CG2R61D   CG2R61A   CG2R61B    40.000    120.00   35.00   2.41967 
+		! Ktheta = PROT JES 8/25/89
+		! S0 correct from JES and from ASJ (2014)
+HGR61   CG2R61B   CG2R61A    30.000    120.00   22.00   2.15265 
+HGR61   CG2R61C   CG2R61A    30.000    120.00   22.00   2.15265 
+HGR61   CG2R61D   CG2R61A    30.000    120.00   22.00   2.15265 
+		! Ktheta = JES 8/25/89
+		! S0 correct from JES and from ASJ (2014)
+CG2R61D  CG2R61A    CG2DC1A   36.00    122.41
+CG2R61B  CG2R61A    CG2DC1A   36.00    117.23
+CG2R61B  CG2R61A    CG2DC1C   36.00    122.41
+CG2R61C  CG2R61A    CG2DC1C   36.00    117.23
+CG2R61C  CG2R61A    CG2DC1B   36.00    122.41
+CG2R61D  CG2R61A    CG2DC1B   36.00    117.23
+		! Ktheta = STYR, styrene & HDZ2, hydrazone model cmpd 2; xxwy & oashi; verified by kevo
+		! Theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+HGA4  CG2DC1A  CG2DC1D    42.00    118.876  
+HGA4  CG2DC1B  CG2DC1D    42.00    118.876  
+HGA4  CG2DC1C  CG2DC1D    42.00    118.876   
+HGA4  CG2DC1D  CG2DC1A    42.00    118.876   
+HGA4  CG2DC1D  CG2DC1B    42.00    118.876    
+HGA4  CG2DC1D  CG2DC1C    42.00    118.876   
+		! Ktheta = RETINOL BTE2, 2-butene
+		! Theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+CG2R61A  CG2DC1A   CG2DC1D   48.00    125.199   
+CG2R61A  CG2DC1B   CG2DC1D   48.00    125.199   
+CG2R61A  CG2DC1C   CG2DC1D   48.00    125.199
+		! *********Ktheta=48.00 GUESS by Michael Roth -- WE WILL ACCEPT BUTENE (not styrene)**********    
+		! Ktheta = CG2D1  CG2D1  CG321    48.00    123.50 ! LIPID  2-butene, yin,adm jr., 12/95
+		!	      CG2DC3 CG2DC1 CG2R61   29.00    122.00 ! STYR, styrene, xxwy & oashi
+		! Theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+CG2R61A   CG2DC1A  HGA4   32.00    115.910   
+CG2R61A   CG2DC1B  HGA4   32.00    115.910   
+CG2R61A   CG2DC1C  HGA4   32.00    115.910   
+CG2R61A   CG2DC1D  HGA4   32.00    115.910
+		!  ******** WE WILL GO WITH THE conjugated version (hydrazone model, styrene)   
+		! Ktheta = HDZ1b, hydrazone model cmpd 1b; STYR, styrene; kevo, xxwy, oashi
+		! 	(non-conjugated) CG2D1  CG2D1  HGA4     52.00    119.50 ! LIPID 2-butene, yin,adm jr., 12/95
+		! Theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  PERIPHERAL RING (revision 6/2014)  *** Note Repeated entries ***
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61A   CG2R61B   CG2R61B    40.000    120.00   35.00   2.41967 
+CG2R61B   CG2R61B   CG2R61D    40.000    120.00   35.00   2.41967 
+CG2R61B   CG2R61D   CG2R61C    40.000    120.00   35.00   2.41967 
+CG2R61D   CG2R61C   CG2R61C    40.000    120.00   35.00   2.41967 
+CG2R61C   CG2R61C   CG2R61A    40.000    120.00   35.00   2.41967 
+!CG2R61C   CG2R61A   CG2R61B    40.000    120.00   35.00   2.41967 
+		! Ktheta = PROT JES 8/25/89 benzene
+		! S0 correct from JES and from ASJ (2014)
+!HGR61   CG2R61B   CG2R61A    30.000    120.00   22.00   2.15265 
+!HGR61   CG2R61C   CG2R61A    30.000    120.00   22.00   2.15265 
+HGR61   CG2R61C   CG2R61C    30.000    120.00   22.00   2.15265 
+HGR61   CG2R61B   CG2R61B    30.000    120.00   22.00   2.15265 
+HGR61   CG2R61D   CG2R61B    30.000    120.00   22.00   2.15265 
+HGR61   CG2R61D   CG2R61C    30.000    120.00   22.00   2.15265 
+		! Ktheta = PROT JES 8/25/89 benzene
+		! S0 correct from JES and from ASJ (2014)
+OG301   CG2R61C   CG2R61C    110.00   124.22 
+OG301   CG2R61C   CG2R61D    110.00   117.77 
+OG301   CG2R61B   CG2R61D    110.00   124.22 
+OG301   CG2R61B   CG2R61B    110.00   117.77 
+		! Ktheta = BIPHENYL ANALOGS, peml
+		! Theta0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+CG2R61B   OG301   CG321    65.00   117.43
+CG2R61C   OG301   CG321    65.00   117.43
+		! Ktheta = ETOB, Ethoxybenzene, cacha, MEOB, Methoxybenzene, cacha
+		! Theta0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+CG2R61A  CG2DC1D   CG2DC1A   48.00    125.199   
+CG2R61A  CG2DC1D   CG2DC1B   48.00    125.199   
+CG2R61A  CG2DC1D   CG2DC1C   48.00    125.199   
+		! *********Ktheta=48.00 GUESS by Michael Roth -- WE WILL ACCEPT BUTENE (not styrene)**********    
+		! Ktheta = CG2D1  CG2D1  CG321    48.00    123.50 ! LIPID  2-butene, yin,adm jr., 12/95
+		!	      CG2DC3 CG2DC1 CG2R61   29.00    122.00 ! STYR, styrene, xxwy & oashi
+		! Theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+!CG2R61A   CG2DC1D  HGA4   32.00    115.910
+		!  ******** WE WILL GO WITH THE conjugated version (hydrazone model, styrene)  
+		! 	(non-conjugated) CG2D1  CG2D1  HGA4     52.00    119.50 ! LIPID 2-butene, yin,adm jr., 12/95 
+		! Ktheta = HDZ1b, hydrazone model cmpd 1b; STYR, styrene; kevo, xxwy, oashi
+		! Theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+CG2R61B  CG2R61A    CG2DC1D   36.00    124.22
+		! Ktheta = STYR, styrene & HDZ2, hydrazone model cmpd 2; xxwy & oashi; verified by kevo
+		! theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+CG2R61C  CG2R61A    CG2DC1D   36.00    117.77   
+		! Ktheta = STYR, styrene & HDZ2, hydrazone model cmpd 2; xxwy & oashi; verified by kevo
+		! theta0 = MP2/631gdp stilbene, A. St. John, 5/2014 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  Oxygen + Alkane branches 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG321 CG321 OG301      45.000    106.805    
+		! Ktheta = diethylether, alex (not our alex)
+		! Theta0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+		! We are removing the UB term (Mike's) since the cgenff file does not have it
+OG301   CG321  HGA2     45.900   110.013 
+		! Ktheta = ETOB, Ethoxybenzene, cacha
+		! Theta0 = MP2/631gdp 1,3-diethoxy-5-methylbenzene, A. St. John, 5/2014 
+CG321  CG321  CG321   58.350    113.4205   11.16   2.54834
+		! Ktheta = alkane update, adm jr., 3/2/92
+		! Theta0 = MP2/631gdp hexane, A. St. John (5/2014)
+		! first angle (next to O) is 112.9 (difference neglected)
+		! S0 correct from alkane ASJ (2014) geometry
+CG331  CG321  CG321   58.000    112.904    8.00   2.54776
+		! Ktheta = alkane update, adm jr., 3/2/92
+		! Theta0 = MP2/631gdp hexane, A. St. John (5/2014)
+		! S0 correct from alkane ASJ (2014) geometry
+HGA2   CG321  CG321   26.500    109.350   22.53   2.14993 
+HGA2   CG321  CG331   34.600    109.612   22.53   2.15265 
+HGA3   CG331  CG321   34.600    111.025   22.53   2.16745 
+HGA3   CG331  HGA3    35.500    107.770    5.40   1.74399 
+		! Ktheta = alkane update, adm jr., 3/2/92
+		! Theta0 = MP2/631gdp hexane, A. St. John (5/2014)
+		! S0 from geometry (ASJ 7-2014)
+HGA2   CG321  HGA2    35.500    106.400    5.40   1.76593 
+		! Ktheta = alkane update, adm jr., 3/2/92
+		! Theta0 = MP2/631gdp hexane, A. St. John (5/2014)
+		! one closest to O is ~ 1.5 deg. bigger
+		! S0 from geometry (ASJ 7-2014)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!	Graphite
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61   CG2R61   CG2R61    40.000    120.00   35.00   2.41967 
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+DIHEDRALS
+!
+!V(dihedral) = Kchi(1 + cos(n(chi) - delta))
+!
+!Kchi: kcal/mole
+!n: multiplicity
+!delta: degrees
+!
+!atom types             Kchi    n   delta
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  CENTRAL RING (revision 6/2014)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61A   CG2R61B   CG2R61A   CG2R61D       3.1000  2   180.00 
+CG2R61B   CG2R61A   CG2R61D   CG2R61A       3.1000  2   180.00 
+CG2R61A   CG2R61D   CG2R61A   CG2R61C       3.1000  2   180.00 
+CG2R61D   CG2R61A   CG2R61C   CG2R61A       3.1000  2   180.00 
+CG2R61A   CG2R61C   CG2R61A   CG2R61B       3.1000  2   180.00 
+CG2R61C   CG2R61A   CG2R61B   CG2R61A       3.1000  2   180.00 
+			! Kchi = PROT JES 8/25/89 benzene
+HGR61   CG2R61B   CG2R61A   CG2R61D       4.2000  2   180.00
+HGR61   CG2R61B   CG2R61A   CG2R61C       4.2000  2   180.00 
+HGR61   CG2R61D   CG2R61A   CG2R61B       4.2000  2   180.00 
+HGR61   CG2R61D   CG2R61A   CG2R61C       4.2000  2   180.00 
+HGR61   CG2R61C   CG2R61A   CG2R61D       4.2000  2   180.00 
+HGR61   CG2R61C   CG2R61A   CG2R61B       4.2000  2   180.00  
+			! Kchi = PROT JES 8/25/89 benzene
+HGR61 CG2R61B CG2R61A CG2DC1A   2.4000  2   180.00
+HGR61 CG2R61B CG2R61A CG2DC1C   2.4000  2   180.00 
+HGR61 CG2R61D CG2R61A CG2DC1A   2.4000  2   180.00 
+HGR61 CG2R61D CG2R61A CG2DC1B   2.4000  2   180.00 
+HGR61 CG2R61C CG2R61A CG2DC1B   2.4000  2   180.00 
+HGR61 CG2R61C CG2R61A CG2DC1C   2.4000  2   180.00  
+			! Kchi = HDZ2, hydrazone model cmpd 2 Kenno: 4.2 -> 2.4
+CG2R61A CG2R61B CG2R61A CG2DC1A  3.1000  2   180.00
+CG2R61A CG2R61C CG2R61A CG2DC1B  3.1000  2   180.00 
+CG2R61A CG2R61B CG2R61A CG2DC1C  3.1000  2   180.00 
+CG2R61A CG2R61D CG2R61A CG2DC1B  3.1000  2   180.00 
+CG2R61A CG2R61D CG2R61A CG2DC1A  3.1000  2   180.00 
+CG2R61A CG2R61C CG2R61A CG2DC1C  3.1000  2   180.00  
+			! Kchi = HDZ2, hydrazone model cmpd 2
+CG2R61D CG2R61A CG2DC1A CG2DC1D   0.7500  2   180.00
+CG2R61D CG2R61A CG2DC1A CG2DC1D   0.1900  4     0.00 
+CG2R61B CG2R61A CG2DC1A CG2DC1D   0.7500  2   180.00
+CG2R61B CG2R61A CG2DC1A CG2DC1D   0.1900  4     0.00 
+CG2R61B CG2R61A CG2DC1C CG2DC1D   0.7500  2   180.00
+CG2R61B CG2R61A CG2DC1C CG2DC1D   0.1900  4     0.00 
+CG2R61C CG2R61A CG2DC1C CG2DC1D   0.7500  2   180.00
+CG2R61C CG2R61A CG2DC1C CG2DC1D   0.1900  4     0.00 
+CG2R61C CG2R61A CG2DC1B CG2DC1D   0.7500  2   180.00
+CG2R61C CG2R61A CG2DC1B CG2DC1D   0.1900  4     0.00 
+CG2R61D CG2R61A CG2DC1B CG2DC1D   0.7500  2   180.00 
+CG2R61D CG2R61A CG2DC1B CG2DC1D   0.1900  4     0.00 
+			! ***************APPROX**************
+			! Kchi = STYR, styrene, xxwy & oashi
+			!
+			! with these parameters we get "shallow basin" at 0 and 180 degrees
+			! actual minimum at around 4.6 degrees, delta E = 0.38 kcal/mol
+CG2R61B CG2R61A CG2DC1A HGA4   0.6000  2     180.00 
+CG2R61B CG2R61A CG2DC1C HGA4   0.6000  2     180.00 
+CG2R61C CG2R61A CG2DC1B HGA4   0.6000  2     180.00 
+CG2R61C CG2R61A CG2DC1C HGA4   0.6000  2     180.00 
+CG2R61D CG2R61A CG2DC1A HGA4   0.6000  2     180.00 
+CG2R61D CG2R61A CG2DC1B HGA4   0.6000  2     180.00 
+			! Kchi = HDZ1b, hydrazone model cmpd 1b, kevo
+X   CG2DC1A  CG2DC1D  X        5.2000  2   180.00
+X   CG2DC1B  CG2DC1D  X        5.2000  2   180.00
+X   CG2DC1C  CG2DC1D  X        5.2000  2   180.00
+			! Kchi = butene, yin/adm jr., 12/95
+			!
+			! ***********WILDCARDS************
+			! CG2R61A CG2DC1A CG2DC1D HGA4
+			! CG2R61A CG2DC1B CG2DC1D HGA4
+			! CG2R61A CG2DC1C CG2DC1D HGA4
+			! HGA4 CG2DC1A CG2DC1D HGA4
+			! HGA4 CG2DC1B CG2DC1D HGA4
+			! HGA4 CG2DC1C CG2DC1D HGA4
+			! CG2R61A CG2DC1A CG2DC1D CG2R61A
+			! CG2R61A CG2DC1B CG2DC1D CG2R61A
+			! CG2R61A CG2DC1C CG2DC1D CG2R61A
+			! ********************************
+			!
+			! the barrier between trans and cis is VERY HIGH (> 6,000 K)
+			! hence, trans <-> cis transitions NEVER happen
+			! Kchi=5.2 maintains the INITIAL (trans) CONFIGURATION (either 0 or 180 deg.)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  PERIPHERAL RING (revision 6/2014) (Note repeated entries)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61B CG2R61A CG2DC1D CG2DC1A   0.7500  2   180.00
+CG2R61B CG2R61A CG2DC1D CG2DC1A   0.1900  4     0.00 
+CG2R61B CG2R61A CG2DC1D CG2DC1B   0.7500  2   180.00
+CG2R61B CG2R61A CG2DC1D CG2DC1B   0.1900  4     0.00 
+CG2R61B CG2R61A CG2DC1D CG2DC1C   0.7500  2   180.00
+CG2R61B CG2R61A CG2DC1D CG2DC1C   0.1900  4     0.00 
+CG2R61C CG2R61A CG2DC1D CG2DC1A   0.7500  2   180.00
+CG2R61C CG2R61A CG2DC1D CG2DC1A   0.1900  4     0.00 
+CG2R61C CG2R61A CG2DC1D CG2DC1B   0.7500  2   180.00
+CG2R61C CG2R61A CG2DC1D CG2DC1B   0.1900  4     0.00 
+CG2R61C CG2R61A CG2DC1D CG2DC1C   0.7500  2   180.00 
+CG2R61C CG2R61A CG2DC1D CG2DC1C   0.1900  4     0.00 
+			! **************APPROX***************
+			! Kchi = STYR, styrene, xxwy & oashi
+			!
+			! with these parameters we get "shallow basin" at 0 and 180 degrees
+			! actual minimum at around 4.6 degrees, delta E = 0.38 kcal/mol
+X    CG2DC1D  CG2DC1A  X        5.2000  2   180.00
+X    CG2DC1D  CG2DC1B  X        5.2000  2   180.00
+X    CG2DC1D  CG2DC1C  X        5.2000  2   180.00
+			! Kchi = butene, yin/adm jr., 12/95
+			!
+			!************WILDCARDS**********
+			! CG2R61A CG2DC1D CG2DC1A HGA4
+			! CG2R61A CG2DC1D CG2DC1B HGA4
+			! CG2R61A CG2DC1D CG2DC1C HGA4
+			!*******************************
+			!
+			! the barrier between trans and cis is VERY HIGH (> 6,000 K)
+			! hence, trans <-> cis transitions NEVER happen
+			! Kchi=5.2 maintains the INITIAL (trans) CONFIGURATION (either 0 or 180 deg.)
+CG2R61B CG2R61A CG2DC1D HGA4   0.6000  2     180.00 
+CG2R61C CG2R61A CG2DC1D HGA4   0.6000  2     180.00 
+			! Kchi = HDZ1b, hydrazone model cmpd 1b, kevo
+CG2R61B CG2R61B CG2R61A CG2DC1D  3.1000  2   180.00 
+CG2R61C CG2R61C CG2R61A CG2DC1D  3.1000  2   180.00  
+			! Kchi = HDZ2, hydrazone model cmpd 2
+HGR61 CG2R61B CG2R61A CG2DC1D   2.4000  2   180.00 
+HGR61 CG2R61C CG2R61A CG2DC1D   2.4000  2   180.00  
+			! Kchi = HDZ2, hydrazone model cmpd 2 Kenno: 4.2 -> 2.4
+CG2R61A   CG2R61B   CG2R61B   CG2R61D       3.1000  2   180.00 
+CG2R61B   CG2R61B   CG2R61D   CG2R61C       3.1000  2   180.00 
+CG2R61B   CG2R61D   CG2R61C   CG2R61C       3.1000  2   180.00 
+CG2R61D   CG2R61C   CG2R61C   CG2R61A       3.1000  2   180.00 
+CG2R61C   CG2R61C   CG2R61A   CG2R61B       3.1000  2   180.00 
+CG2R61C   CG2R61A   CG2R61B   CG2R61B       3.1000  2   180.00 
+			! Kchi = PROT JES 8/25/89 benzene
+HGR61   CG2R61D   CG2R61B   CG2R61B       4.2000  2   180.00
+HGR61   CG2R61D   CG2R61C   CG2R61C       4.2000  2   180.00
+!HGR61   CG2R61B   CG2R61A   CG2R61C       4.2000  2   180.00
+HGR61   CG2R61B   CG2R61B   CG2R61D       4.2000  2   180.00   
+HGR61   CG2R61C   CG2R61C   CG2R61D       4.2000  2   180.00 
+!HGR61   CG2R61C   CG2R61A   CG2R61B       4.2000  2   180.00  
+			! Kchi = PROT JES 8/25/89 benzene
+CG2R61A CG2R61B CG2R61B OG301     3.1000  2   180.00
+CG2R61A CG2R61C CG2R61C OG301     3.1000  2   180.00
+CG2R61C CG2R61D CG2R61B OG301     3.1000  2   180.00
+CG2R61B CG2R61D CG2R61C OG301     3.1000  2   180.00
+			! Kchi = BIPHENYL ANALOGS, peml
+HGR61 CG2R61B CG2R61B OG301    2.4000  2   180.00 
+HGR61 CG2R61D CG2R61B OG301    2.4000  2   180.00 
+HGR61 CG2R61D CG2R61C OG301    2.4000  2   180.00 
+HGR61 CG2R61C CG2R61C OG301    2.4000  2   180.00 
+			! Kchi = BIPHENYL ANALOGS, peml. Kenno: 4.2 -> 2.4
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  Oxygen + Alkane branches  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61B CG2R61B OG301  CG321      1.6200  2   180.00 
+CG2R61B CG2R61B OG301  CG321      0.1900  4   180.00
+CG2R61D CG2R61B OG301  CG321      1.6200  2   180.00 
+CG2R61D CG2R61B OG301  CG321      0.1900  4   180.00 
+CG2R61C CG2R61C OG301  CG321      1.6200  2   180.00 
+CG2R61C CG2R61C OG301  CG321      0.1900  4   180.00 
+CG2R61D CG2R61C OG301  CG321      1.6200  2   180.00 
+CG2R61D CG2R61C OG301  CG321      0.1900  4   180.00  
+			! Kchi = ETOB, Ethoxybenzene, cacha
+CG321  CG321  OG301  CG2R61B     0.2400  1     0.00 
+CG321  CG321  OG301  CG2R61B     0.2900  2     0.00 
+CG321  CG321  OG301  CG2R61B     0.0200  3     0.00 
+CG321  CG321  OG301  CG2R61C     0.2400  1     0.00 
+CG321  CG321  OG301  CG2R61C     0.2900  2     0.00 
+CG321  CG321  OG301  CG2R61C     0.0200  3     0.00 
+			! PNTM, pentamidine; from ETOB, Ethoxybenzene; kevo
+			!
+			! **************SEE oxygen_dihedrals_questions.nb for plots*******************
+			!
+			!  ********* THIS ALONE IS GIVING A WEAK MINIMUM AT ~95 degrees, STRANGE ***********
+			! However, adding the other relevant dihedrals that are linked (e.g., involving H's) adds 
+			! 2*U[chi, .095, 3, 0] + 2 U[chi, .19, 3, 0]
+			! this results in minima at 67 degrees, and a slightly more energetic one at 180 degrees (this should be the one)
+HGA2   CG321  OG301   CG2R61B     0.0950  3     0.00 
+HGA2   CG321  OG301   CG2R61C     0.0950  3     0.00 
+			! ETOB, Ethoxybenzene, cacha
+			! this looks good, +- 60 degrees (and a weird one at 180 degrees)
+CG321  CG321  CG321  CG321      0.1500  1     0.00
+			! ***UNKNOWN SOURCE***
+                ! Kchi = alkane update, adm jr., 3/2/92, butane trans/gauche
+			! 
+			! adding numerous dihedrals(4*H2-CT2-CT2-H2, 8*H2-CT2-CT2-CT2 WC)
+			! results in minima at (180 deg, 0 K) and (60 deg, 113 K)
+			!
+			! **************SEE alkane_dihedrals_CT2CT2CT2CT2.nb/.pdf for plots*******************
+			!
+			! ***LIPIDS SOURCE***
+			! CTL2 CTL2 CTL2 CTL2     0.101   2     0.00 ! alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL2     0.142   3   180.00 ! alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL2     0.074   4     0.00 ! alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL2     0.097   5     0.00 ! alkane, 7/08, jbk
+			! using the lipids file (2,3,4,5 params)
+			! adding the numerous H dihedrals (4*H2-CT2-CT2-H2, 8*H2-CT2-CT2-CT2 WC)
+			! results in minima at (58.6 deg, 0), (180 deg, 62 K)
+			! note this is NOT including any non-bonded interactions and also is NOT optimized.
+			! barrier height is maximum at (121.1 deg, 2232.4 K)
+			!
+			! ***CGENFF SOURCE***
+			! CG321  CG321  CG321  CG321      0.06450 2     0.00 ! LIPID alkane, 4/04, jbk (Jeff Klauda)
+			! CG321  CG321  CG321  CG321      0.14975 3   180.00 ! LIPID alkane, 4/04, jbk
+			! CG321  CG321  CG321  CG321      0.09458 4     0.00 ! LIPID alkane, 4/04, jbk
+			! CG321  CG321  CG321  CG321      0.11251 5     0.00 ! LIPID alkane, 4/04, jbk
+			! using the cgenff file (2,3,4,5 params)
+			! adding the numerous H dihedrals (4*H2-CT2-CT2-H2, 8*H2-CT2-CT2-CT2 WC)
+			! results in minima at (58 deg, 0), (180 deg, 41.5 K)
+			! note this is NOT including any non-bonded interactions and also is NOT optimized.
+			! barrier height is maximum at (120.9 deg, 2219.3 K)  
+CG331  CG321  CG321  CG321      0.1500  1     0.00 
+			! ***UNKNOWN SOURCE***
+			! Kchi = alkane update, adm jr., 3/2/92, butane trans/gauche
+			!
+			! adding numerous dihedrals(4*H2-CT2-CT2-H2, 8*H2-CT2-CT2-CT2 WC)
+			! results in minima at (180 deg, 0 K) and (60 deg, 113 K)
+			!
+			! **************SEE alkane_dihedrals_CT3CT2CT2CT2.nb/.pdf for plots*******************
+			!
+			! bare CT2-CT2-CT2-CT3 gives minimum at 180 degrees, reasonable, but missing gauche defects, and appears too shallow
+			! adding the numerous H dihedrals (4*H2-CT2-CT2-H2, 2*H2-CT2-CT2-CT3 WC, 2*H2-CT2-CT2-CT2 WC)
+			! results in minima at (180 deg, 0), (60.4 deg, 113 K)
+			! note this is NOT including any non-bonded interactions and also is NOT optimized.
+			! barrier height is maximum at (120 deg, 2175 K) 			
+			! 
+			! ***LIPIDS SOURCE***
+			! CTL2 CTL2 CTL2 CTL3     0.162   2     0.00 ! (lipds) alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL3     0.047   3   180.00 ! (lipds) alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL3     0.105   4     0.00 ! (lipds) alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL3     0.177   5     0.00 ! (lipds) alkane, 7/08, jbk
+			! using the lipids file (2,3,4,5 params)
+			! bare CT2-CT2-CT2-CT3 gives min. at (111 deg, 0), (40 deg, 55 K), (180 deg, 231 K)
+			! adding the numerous H dihedrals (4*H2-CT2-CT2-H2, 2*H2-CT2-CT2-CT3 WC, 2*H2-CT2-CT2-CT2 WC)
+			! results in minima at (57 deg, 0), (180 deg, 78 K)
+			! note this is NOT including any non-bonded interactions and also is NOT optimized.
+			! barrier height is maximum at (122 deg, 2019 K) 
+			!
+			! ***CGENFF SOURCE***
+			! CTL2 CTL2 CTL2 CTL3     0.15051   2     0.00 ! (lipds) alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL3     0.08133   3   180.00 ! (lipds) alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL3     0.10824   4     0.00 ! (lipds) alkane, 7/08, jbk
+			! CTL2 CTL2 CTL2 CTL3     0.20391   5     0.00 ! (lipds) alkane, 7/08, jbk
+			! using the cgenff file (2,3,4,5 params)
+			! adding the numerous H dihedrals (4*H2-CT2-CT2-H2, 2*H2-CT2-CT2-CT3 WC, 2*H2-CT2-CT2-CT2 WC)
+			! results in minima at (57 deg, 0), (180 deg, 56 K)
+			! note this is NOT including any non-bonded interactions and also is NOT optimized.
+			! barrier height is maximum at (123 deg, 1977 K) 
+! CW NOTE:  WHICH SHOULD WE KEEP??? ***************************
+! ASJ NOTE: WE WANT UNKNOWN SOURCE (adding H dihedrals(4*H2-CT2-CT2-H2, 8*H2-CT2-CT2-CT2 WC) results in minima at (180 deg, 0 K) and (60 deg, 113 K))
+
+HGA2   CG321  CG321  HGA2       0.2200  3     0.00 
+			! Kchi = LIPID alkanes
+HGA2   CG321  CG331  HGA3        0.1600  3     0.00
+			! Kchi = PROT rotation barrier in Ethane (SF) 
+X      CG321  CG321  X        0.1900  3     0.00
+			! Kchi = (lipids) alkane, 4/98, yin and mackerell
+			! HGA2 CG321 CG321 CG321
+			! OG301 CG321 CG321 HGA2
+			! OG301 CG321 CG321 CG321 
+X      CG321  CG331  X        0.1600  3     0.00 
+			! Kchi = (lipids) alkane, 4/98, yin and mackerell
+			! HGA3 CG331 CG321 CG321
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!	Graphite
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CG2R61   CG2R61   CG2R61   CG2R61       3.1000  2   180.00 
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+NONBONDED nbxmod  5 atom cdiel fshift vatom vdistance vfswitch -
+cutnb 14.0 ctofnb 12.0 ctonnb 10.0 eps 1.0 e14fac 1.0 wmin 1.5
+!
+!V(Lennard-Jones) = Eps,i,j[(Rmin,i,j/ri,j)**12 - 2(Rmin,i,j/ri,j)**6]
+!
+!epsilon: kcal/mole, Eps,i,j = sqrt(eps,i * eps,j)
+!Rmin/2: A, Rmin,i,j = Rmin/2,i + Rmin/2,j
+!
+!atom  ignored    epsilon      Rmin/2   ignored   eps,1-4       Rmin/2,1-4
+!
+!see mass list above for better description of atom types
+
+
+!hydrogens
+HGR61    0.0       -0.0300     1.3582 ! benzene
+HGA2     0.0       -0.0350     1.3400 ! alkane, igor, 6/05
+HGA3     0.0       -0.0240     1.3400 ! alkane, yin and mackerell, 4/98
+HGA4     0.0       -0.0310     1.2500 ! alkene, yin,adm jr., 12/95
+
+!carbons
+CG321    0.0       -0.0560     2.0100   0.0 -0.01 1.9 ! alkane (CT2), 4/98, yin, adm jr, also used by viv
+CG331    0.0       -0.0780     2.0500   0.0 -0.01 1.9 ! alkane (CT3), 4/98, yin, adm jr; Rmin/2 modified from 2.04 to 2.05
+CG2R61   0.0       -0.0700     1.9924 ! INDO/TRP
+CG2R61A   0.0       -0.0700     1.9924 ! INDO/TRP
+CG2R61B   0.0       -0.0700     1.9924 ! INDO/TRP
+CG2R61C   0.0       -0.0700     1.9924 ! INDO/TRP
+CG2R61D   0.0       -0.0700     1.9924 ! INDO/TRP
+CG2DC1   0.0       -0.0680     2.0900 ! Butadiene
+CG2DC1A   0.0       -0.0680     2.0900 ! Butadiene
+CG2DC1B   0.0       -0.0680     2.0900 ! Butadiene
+CG2DC1C   0.0       -0.0680     2.0900 ! Butadiene
+CG2DC1D   0.0       -0.0680     2.0900 ! Butadiene
+
+!oxygen
+OG301    0.0       -0.1000     1.6500 ! ether; LJ from THP, sng 1/06 
+			!SHOULD WE HAVE A SEPARATE ENOL ETHER??? IF YES, SHOULD WE MERGE IT WITH OG3R60???
+
+
+
+
+

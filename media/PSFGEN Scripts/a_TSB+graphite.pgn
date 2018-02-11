@@ -1,0 +1,70 @@
+package require psfgen
+
+set nCARBON [lindex $argv 0]
+set nQUARTERS [lindex $argv 1]
+
+set QUARTERS 0${nQUARTERS}-quarter
+set TSBDIR ../../02_cpp-writer/${QUARTERS}/tsb35-c${nCARBON}_${QUARTERS}_TSB
+set GRAPDIR ../../02_cpp-writer/${QUARTERS}/tsb35-c${nCARBON}_${QUARTERS}_LAY
+
+topology ../../02_cpp-writer/${QUARTERS}/tsb35-c${nCARBON}_${QUARTERS}_TOP.top
+
+pdb ${TSBDIR}A-PDB.pdb
+segment TSBA {pdb ${TSBDIR}A-PDB.pdb}
+coordpdb ${TSBDIR}A-PDB.pdb TSBA
+
+pdb ${TSBDIR}B-PDB.pdb
+segment TSBB {pdb ${TSBDIR}B-PDB.pdb}
+coordpdb ${TSBDIR}B-PDB.pdb TSBB
+
+pdb ${GRAPDIR}1-PDB.pdb
+segment LAY1 {pdb ${GRAPDIR}1-PDB.pdb}
+coordpdb ${GRAPDIR}1-PDB.pdb LAY1
+
+pdb ${GRAPDIR}2-PDB.pdb
+segment LAY2 {pdb ${GRAPDIR}2-PDB.pdb}
+coordpdb ${GRAPDIR}2-PDB.pdb LAY2
+
+pdb ${GRAPDIR}3-PDB.pdb
+segment LAY3 {pdb ${GRAPDIR}3-PDB.pdb}
+coordpdb ${GRAPDIR}3-PDB.pdb LAY3
+
+pdb ${GRAPDIR}4-PDB.pdb
+segment LAY4 {pdb ${GRAPDIR}4-PDB.pdb}
+coordpdb ${GRAPDIR}4-PDB.pdb LAY4
+
+pdb ${GRAPDIR}5-PDB.pdb
+segment LAY5 {pdb ${GRAPDIR}5-PDB.pdb}
+coordpdb ${GRAPDIR}5-PDB.pdb LAY5
+
+pdb ${GRAPDIR}6-PDB.pdb
+segment LAY6 {pdb ${GRAPDIR}6-PDB.pdb}
+coordpdb ${GRAPDIR}6-PDB.pdb LAY6
+
+writepdb ../../04_NAMD/${QUARTERS}/tsb35-c${nCARBON}_${QUARTERS}_simPDB.pdb
+writepsf ../../04_NAMD/${QUARTERS}/tsb35-c${nCARBON}_${QUARTERS}_simPSF.psf
+
+writepdb tsb35-c${nCARBON}_${QUARTERS}_simPDB.pdb
+writepsf tsb35-c${nCARBON}_${QUARTERS}_simPSF.psf
+
+#################################################################
+# Generate fixedAtoms file
+#################################################################
+
+mol load pdb tsb35-c${nCARBON}_${QUARTERS}_simPDB.pdb
+mol addfile tsb35-c${nCARBON}_${QUARTERS}_simPSF.psf
+
+set all [atomselect top all]
+
+set overlayer [atomselect top "segname TSBA TSBB"]
+set graphite [atomselect top "segname LAY1 LAY2 LAY3 LAY4 LAY5 LAY6"]
+
+$all set beta 0
+$graphite set beta 1
+
+$all writepdb tsb35-c${nCARBON}_${QUARTERS}_fixedPDB.pdb
+$all writepdb ../../04_NAMD/${QUARTERS}/tsb35-c${nCARBON}_${QUARTERS}_fixedPDB.pdb
+
+#mol delete all
+#exit
+
